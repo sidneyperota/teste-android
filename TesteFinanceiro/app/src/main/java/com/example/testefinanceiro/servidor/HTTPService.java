@@ -4,8 +4,11 @@ import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,7 +20,9 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
     @Override
     protected String doInBackground(Void... voids) {
 
-        StringBuilder resposta = new StringBuilder();
+        //StringBuilder resposta = new StringBuilder();
+
+        String resposta = "Sidney";
 
         try {
 
@@ -32,11 +37,21 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
 
             urlConnection.connect();
 
-            Scanner scanner = new Scanner(  url.openStream() );
+            InputStream stream = urlConnection.getInputStream();
+
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+
+
+            resposta = reader.readLine();
+
+            /*
+
+            //Scanner scanner = new Scanner(  url.openStream() );
 
             while ( scanner.hasNext() ) {
-                resposta.append(scanner.next() );
-            }
+               // resposta.append(scanner.next() );
+            }   */
 
 
         } catch (MalformedURLException e) {
@@ -45,7 +60,7 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
             e.printStackTrace();
         }
 
-        return resposta.toString();
+        return resposta;
         //return new Gson().fromJson( resposta.toString(), Caixa.class );
     }
 }
