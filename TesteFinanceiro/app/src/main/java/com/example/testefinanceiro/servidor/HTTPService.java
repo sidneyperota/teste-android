@@ -27,7 +27,11 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
         try {
 
 
-            URL url = new URL("http://localhost:8080/api.php");
+            //URL url = new URL("http://localhost:8080/api.php");
+
+            URL url = new URL("http://ws.matheuscastiglioni.com.br/ws/cep/find/27283035/json/");
+
+
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
