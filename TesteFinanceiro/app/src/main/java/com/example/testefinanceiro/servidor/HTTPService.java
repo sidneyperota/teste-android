@@ -29,7 +29,9 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
 
             //URL url = new URL("http://localhost:8080/api.php");
 
-            URL url = new URL("http://ws.matheuscastiglioni.com.br/ws/cep/find/27283035/json/");
+            //URL url = new URL("http://ws.matheuscastiglioni.com.br/ws/cep/find/27283035/json/");
+
+            URL url = new URL("https://sifrapec.000webhostapp.com/api.php");
 
 
 
@@ -64,7 +66,6 @@ public class HTTPService extends AsyncTask<Void, Void, String  > {
             e.printStackTrace();
         }
 
-        return resposta;
-        //return new Gson().fromJson( resposta.toString(), Caixa.class );
+      return resposta.toString();
     }
 }

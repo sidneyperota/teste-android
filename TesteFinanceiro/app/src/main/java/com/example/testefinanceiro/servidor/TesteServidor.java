@@ -1,6 +1,7 @@
 package com.example.testefinanceiro.servidor;
 
 import com.example.testefinanceiro.MainActivity;
+import com.google.gson.Gson;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -58,11 +59,33 @@ public class TesteServidor {
     HTTPService httpService = new HTTPService();
         try {
 
-
             String str = httpService.execute().get();
 
-            System.out.println( "Caixas"+ str );
 
+            Caixa caixa;
+
+            //return resposta;
+            Gson obj_gson;
+            obj_gson = new Gson();
+
+            String sObj = "{'id':'4','conta':'2019-11-26','operacao':'E','historico':'0001','valor':'212','usuario':'pagp','doc':'10.00','data':'1'}";
+
+
+
+
+            caixa = obj_gson.fromJson(sObj, Caixa.class);
+
+
+
+
+            System.out.println( caixa.getData() );
+            System.out.println( caixa.getConta() );
+            System.out.println( caixa.getHistorico() );
+            System.out.println( caixa.getValor() );
+            System.out.println( caixa.getOperacao() );
+
+
+            System.out.println( "Caixas" + str );
 
         } catch (ExecutionException e) {
             e.printStackTrace();
